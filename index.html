@@ -1,0 +1,1334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tran Khai Hoang & Khuu Yen Ngoc | Wedding Invitation</title>
+    <meta
+      name="description"
+      content="Luxury cinematic wedding invitation for Tran Khai Hoang and Khuu Yen Ngoc."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f8f6f3;
+        --ivory: #fafafa;
+        --charcoal: #1d1b1b;
+        --charcoal-soft: #4a4545;
+        --burgundy: #7a0e0e;
+        --burgundy-deep: #5d0808;
+        --wine: #8b0000;
+        --line: rgba(122, 14, 14, 0.26);
+        --soft-shadow: 0 18px 45px rgba(29, 27, 27, 0.07);
+        --radius: 18px;
+        --section-space: clamp(70px, 10vw, 140px);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--charcoal);
+        background: var(--bg);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, 92vw);
+        margin-inline: auto;
+      }
+
+      .section {
+        padding: var(--section-space) 0;
+      }
+
+      .section-head {
+        margin-bottom: clamp(22px, 4vw, 40px);
+      }
+
+      .eyebrow {
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.74rem;
+        color: var(--burgundy);
+      }
+
+      .title {
+        margin-top: 8px;
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.95rem, 4.2vw, 3.3rem);
+        letter-spacing: 0.01em;
+      }
+
+      .subtitle {
+        margin-top: 10px;
+        color: var(--charcoal-soft);
+        max-width: 680px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(34px);
+        transition:
+          opacity 0.95s ease,
+          transform 0.95s ease;
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal.left {
+        transform: translateX(-36px);
+      }
+
+      .reveal.right {
+        transform: translateX(36px);
+      }
+
+      .reveal.left.in,
+      .reveal.right.in {
+        transform: translateX(0);
+      }
+
+      /* =========================
+         1) CINEMATIC LOADING INTRO
+         ========================= */
+      .intro {
+        position: fixed;
+        inset: 0;
+        background: var(--ivory);
+        display: grid;
+        place-items: center;
+        z-index: 2000;
+        transition:
+          opacity 0.9s ease,
+          visibility 0.9s ease;
+      }
+
+      .intro.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .intro-name {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.2rem, 4vw, 2.2rem);
+        color: var(--charcoal);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        animation: introTracking 2.2s ease forwards;
+      }
+
+      .intro-name span {
+        color: var(--burgundy);
+      }
+
+      @keyframes introTracking {
+        0% {
+          letter-spacing: 0.9em;
+          opacity: 0;
+        }
+        45% {
+          opacity: 1;
+        }
+        100% {
+          letter-spacing: 0.24em;
+          opacity: 1;
+        }
+      }
+
+      /* =========================
+         2) FULLSCREEN HERO
+         ========================= */
+      .hero {
+        min-height: 100svh;
+        position: relative;
+        display: grid;
+        place-items: center;
+        isolation: isolate;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2100&q=80");
+        background-size: cover;
+        background-position: center;
+        transform: scale(1.06) translateY(var(--hero-parallax, 0px));
+        transition: transform 0.25s linear;
+        z-index: -2;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          160deg,
+          rgba(122, 14, 14, 0.38),
+          rgba(26, 22, 22, 0.42) 50%,
+          rgba(93, 8, 8, 0.35)
+        );
+        z-index: -1;
+      }
+
+      .hero-inner {
+        text-align: center;
+        color: #f7f2ef;
+        padding: 28px;
+      }
+
+      .hero-logo {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: clamp(1.6rem, 6.5vw, 4.7rem);
+        line-height: 1.08;
+        text-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+      }
+
+      .hero-logo .outline {
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(255, 228, 228, 0.88);
+      }
+
+      .hero-tagline {
+        margin-top: 16px;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        font-size: clamp(0.72rem, 2.3vw, 0.96rem);
+      }
+
+      .hero-date {
+        margin-top: 14px;
+        font-size: clamp(0.95rem, 2.7vw, 1.18rem);
+        letter-spacing: 0.13em;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: rgba(255, 246, 246, 0.93);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .scroll-indicator span {
+        width: 1px;
+        height: 32px;
+        background: rgba(255, 240, 240, 0.75);
+        animation: scrollLine 1.6s ease-in-out infinite;
+      }
+
+      @keyframes scrollLine {
+        0%,
+        100% {
+          transform: scaleY(0.35);
+          opacity: 0.45;
+        }
+        50% {
+          transform: scaleY(1);
+          opacity: 1;
+        }
+      }
+
+      /* =========================
+         3) STORY SECTION
+         ========================= */
+      .story-grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .story-item {
+        display: grid;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .story-image {
+        border-radius: var(--radius);
+        overflow: hidden;
+        min-height: 300px;
+        box-shadow: var(--soft-shadow);
+      }
+
+      .story-image img {
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .story-copy {
+        padding: 8px 2px;
+      }
+
+      .story-copy h3 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.3rem, 3vw, 2.1rem);
+        color: var(--burgundy);
+      }
+
+      .story-copy p {
+        margin-top: 10px;
+        color: var(--charcoal-soft);
+      }
+
+      /* =========================
+         4) EVENT DETAILS CARD
+         ========================= */
+      .event-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: calc(var(--radius) + 2px);
+        box-shadow: var(--soft-shadow);
+        padding: clamp(24px, 4vw, 40px);
+        display: grid;
+        gap: 16px;
+      }
+
+      .event-row {
+        display: grid;
+        gap: 4px;
+      }
+
+      .event-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--burgundy);
+      }
+
+      .event-value {
+        font-size: clamp(1rem, 2.5vw, 1.15rem);
+      }
+
+      .map-btn {
+        margin-top: 10px;
+        justify-self: start;
+        border: 1px solid var(--burgundy);
+        color: var(--burgundy);
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+        transition: color 0.35s ease;
+      }
+
+      .map-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, var(--burgundy-deep), var(--wine));
+        transform: translateX(-102%);
+        transition: transform 0.35s ease;
+        z-index: -1;
+      }
+
+      .map-btn:hover {
+        color: #fff7f7;
+      }
+
+      .map-btn:hover::before {
+        transform: translateX(0);
+      }
+
+      /* =========================
+         5) COUNTDOWN SECTION
+         ========================= */
+      .countdown {
+        text-align: center;
+      }
+
+      .count-grid {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .count-box {
+        border-radius: 12px;
+        border: 1px solid rgba(122, 14, 14, 0.12);
+        background: #fff;
+        padding: 18px 10px;
+      }
+
+      .count-num {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 7vw, 3.25rem);
+        line-height: 1;
+        color: var(--burgundy);
+        transition: transform 0.22s ease;
+      }
+
+      .count-num.bump {
+        transform: translateY(-2px) scale(1.06);
+      }
+
+      .count-text {
+        margin-top: 8px;
+        font-size: 0.74rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--charcoal-soft);
+      }
+
+      /* =========================
+         6) GALLERY SECTION
+         ========================= */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 160px;
+        gap: 10px;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 14px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(4) {
+        grid-row: span 2;
+      }
+
+      .gallery-item:nth-child(3) {
+        grid-column: span 2;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.1s ease;
+      }
+
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(122, 14, 14, 0.34),
+          rgba(122, 14, 14, 0.06)
+        );
+        opacity: 0;
+        transition: opacity 0.45s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.08);
+      }
+
+      .gallery-item:hover::after {
+        opacity: 1;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(15, 11, 11, 0.9);
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.45s ease,
+          visibility 0.45s ease;
+        z-index: 120;
+      }
+
+      .modal.open {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal img {
+        width: min(1180px, 95vw);
+        max-height: 88vh;
+        object-fit: contain;
+        transform: scale(0.94);
+        transition: transform 0.45s ease;
+      }
+
+      .modal.open img {
+        transform: scale(1);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 234, 234, 0.55);
+        background: rgba(122, 14, 14, 0.35);
+        color: #fff;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      /* =========================
+         7) RSVP SECTION
+         ========================= */
+      .rsvp-form {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: calc(var(--radius) + 2px);
+        box-shadow: var(--soft-shadow);
+        padding: clamp(22px, 4vw, 38px);
+      }
+
+      .field-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .field {
+        position: relative;
+      }
+
+      .field input,
+      .field select {
+        width: 100%;
+        height: 52px;
+        border-radius: 12px;
+        border: 1px solid rgba(122, 14, 14, 0.34);
+        background: #fff;
+        padding: 18px 14px 8px;
+        font: inherit;
+        color: var(--charcoal);
+        outline: none;
+        transition:
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .field select {
+        padding-top: 14px;
+      }
+
+      .field input:focus,
+      .field select:focus {
+        border-color: var(--burgundy);
+        box-shadow: 0 0 0 4px rgba(122, 14, 14, 0.12);
+      }
+
+      .field label {
+        position: absolute;
+        left: 14px;
+        top: 16px;
+        font-size: 0.88rem;
+        color: #7f6f6f;
+        pointer-events: none;
+        transition:
+          top 0.2s ease,
+          font-size 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .field input:focus + label,
+      .field input:not(:placeholder-shown) + label,
+      .field select:focus + label,
+      .field select.filled + label {
+        top: 6px;
+        font-size: 0.7rem;
+        color: var(--burgundy);
+      }
+
+      .error {
+        margin-top: 6px;
+        min-height: 16px;
+        font-size: 0.78rem;
+        color: var(--burgundy);
+      }
+
+      .submit-btn {
+        margin-top: 8px;
+        width: 100%;
+        border: none;
+        color: #fff4f4;
+        background: linear-gradient(120deg, var(--burgundy-deep), var(--wine));
+        border-radius: 12px;
+        padding: 14px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+      }
+
+      .submit-btn:hover {
+        filter: brightness(1.04);
+      }
+
+      /* =========================
+         8) WEDDING GIFT SECTION
+         ========================= */
+      .gift-wrap {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: calc(var(--radius) + 2px);
+        box-shadow: var(--soft-shadow);
+        padding: clamp(20px, 4vw, 38px);
+        display: grid;
+        gap: 18px;
+      }
+
+      .gift-copy {
+        color: var(--charcoal-soft);
+        max-width: 560px;
+      }
+
+      .gift-grid {
+        display: grid;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .gift-info {
+        display: grid;
+        gap: 10px;
+      }
+
+      .gift-row {
+        border: 1px solid rgba(122, 14, 14, 0.16);
+        border-radius: 12px;
+        padding: 12px 14px;
+        background: #fff;
+      }
+
+      .gift-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--burgundy);
+      }
+
+      .gift-value {
+        margin-top: 3px;
+        font-size: 0.98rem;
+      }
+
+      .copy-btn {
+        margin-top: 2px;
+        width: fit-content;
+        border: 1px solid var(--burgundy);
+        background: #fff;
+        color: var(--burgundy);
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          background 0.28s ease,
+          color 0.28s ease,
+          transform 0.28s ease;
+      }
+
+      .copy-btn:hover {
+        background: var(--burgundy);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+
+      .copy-btn.copied {
+        background: var(--burgundy);
+        color: #fff;
+      }
+
+      .gift-qr {
+        width: min(320px, 100%);
+        justify-self: center;
+        border: 1px solid rgba(122, 14, 14, 0.2);
+        border-radius: 14px;
+        padding: 10px;
+        background: #fff;
+      }
+
+      .gift-qr img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      /* =========================
+        9) MUSIC CONTROL
+        ========================= */
+      .music-btn {
+        position: fixed;
+        right: 14px;
+        bottom: 18px;
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient(130deg, var(--burgundy-deep), var(--wine));
+        color: #fff;
+        box-shadow: 0 12px 26px rgba(93, 8, 8, 0.28);
+        cursor: pointer;
+        z-index: 70;
+        display: grid;
+        place-items: center;
+      }
+
+      .music-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: #fff;
+      }
+
+      /* =========================
+        10) FOOTER
+        ========================= */
+      footer {
+        text-align: center;
+        padding: 56px 0 70px;
+      }
+
+      .quote {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+      }
+
+      .signature {
+        margin-top: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(122, 14, 14, 0.76);
+        font-size: 0.84rem;
+      }
+
+      @media (min-width: 760px) {
+        .story-item {
+          grid-template-columns: 1.1fr 1fr;
+          gap: 34px;
+        }
+
+        .story-item.reverse {
+          grid-template-columns: 1fr 1.1fr;
+        }
+
+        .story-item.reverse .story-image {
+          order: 2;
+        }
+
+        .story-item.reverse .story-copy {
+          order: 1;
+        }
+
+        .count-grid {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .field-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .field-grid .full {
+          grid-column: 1 / -1;
+        }
+
+        .gift-grid {
+          grid-template-columns: 1.1fr minmax(240px, 320px);
+          gap: 24px;
+        }
+      }
+
+      @media (min-width: 980px) {
+        .gallery-grid {
+          grid-template-columns: 1.15fr 1fr 1fr;
+          grid-auto-rows: 210px;
+        }
+
+        .gallery-item:nth-child(3) {
+          grid-column: auto;
+        }
+
+        .gallery-item:nth-child(5) {
+          grid-column: span 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =========================
+         CONTENT BLOCK (EDIT HERE)
+         ========================= -->
+    <script>
+      const CONTENT = {
+        bride: "Tran Khai Hoang",
+        groom: "Khuu Yen Ngoc",
+        date: "04 May 2026",
+        isoDate: "2026-05-04T08:30:00",
+        location: "White Palace Saigon",
+        map: "https://maps.app.goo.gl/CHcfQ8Ey4TdMKuoF7?g_st=ic",
+        dressCode: "Formal in black, white, burgundy tones",
+        tagline: "A Love Written In Red",
+        gift: {
+          bankName: "Vietcombank",
+          accountName: "Tran Khai Hoang",
+          accountNumber: "0123 456 789",
+          qrImage:
+            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80",
+        },
+        story: [
+          {
+            title: "First Met",
+            text: "A chance encounter in Saigon became the start of a story neither of us could forget. Quiet conversations turned into long evenings, and long evenings turned into home.",
+            image:
+              "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80",
+          },
+          {
+            title: "The Proposal",
+            text: "Under city lights and midnight skies, one question changed everything. The answer was immediate, effortless, and forever.",
+            image:
+              "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1400&q=80",
+          },
+          {
+            title: "Forever Begins",
+            text: "Now we step into a new chapter with gratitude, elegance, and a love that feels both timeless and vividly alive.",
+            image:
+              "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1400&q=80",
+          },
+        ],
+        gallery: [
+          "https://images.unsplash.com/photo-1465495976277-4387d4b0f7d1?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80",
+          "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
+        ],
+      };
+    </script>
+
+    <!-- 1) CINEMATIC LOADING INTRO -->
+    <div class="intro" id="intro" aria-hidden="true">
+      <h1 class="intro-name">Khai Hoang <span>&</span> Yen Ngoc</h1>
+    </div>
+
+    <!-- 8) MUSIC CONTROL -->
+    <audio
+      id="bgMusic"
+      preload="none"
+      loop
+      src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3"
+    ></audio>
+    <button
+      class="music-btn"
+      id="musicBtn"
+      aria-label="Toggle music"
+      title="Music"
+    >
+      <svg id="musicIcon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 5v14l11 2V3L8 5Zm-3 5v4h2v-4H5Z"></path>
+      </svg>
+    </button>
+
+    <!-- 2) FULLSCREEN HERO -->
+    <header class="hero" id="hero">
+      <div class="hero-inner reveal in">
+        <p class="eyebrow" style="color: rgba(255, 238, 238, 0.96)">
+          Wedding Invitation
+        </p>
+        <h2 class="hero-logo">
+          <span class="outline">Tran Khai Hoang</span><br />
+          &amp;<br />
+          Khuu Yen Ngoc
+        </h2>
+        <p class="hero-tagline">A Love Written In Red</p>
+        <p class="hero-date">04 May 2026</p>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true">Scroll<span></span></div>
+    </header>
+
+    <main>
+      <!-- 3) STORY SECTION – EDITORIAL LAYOUT -->
+      <section class="section" id="story">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Our Story</p>
+            <h2 class="title">Editorial Chapters</h2>
+          </div>
+
+          <div class="story-grid" id="storyGrid"></div>
+        </div>
+      </section>
+
+      <!-- 4) EVENT DETAILS – LUXURY CARD -->
+      <section class="section" id="event">
+        <div class="container">
+          <div class="event-card reveal">
+            <div class="event-row">
+              <p class="event-label">Date & Time</p>
+              <p class="event-value">04 May 2026 · 8:30 AM</p>
+            </div>
+            <div class="event-row">
+              <p class="event-label">Location</p>
+              <p class="event-value">Hoa Tay A, Phu Hoa, An Giang</p>
+            </div>
+            <div class="event-row">
+              <p class="event-label">Dress Code</p>
+              <p class="event-value">Formal in black, white, burgundy tones</p>
+            </div>
+            <a
+              class="map-btn"
+              href="https://maps.app.goo.gl/CHcfQ8Ey4TdMKuoF7?g_st=ic"
+              target="_blank"
+              rel="noopener"
+              >View Map</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- 5) COUNTDOWN SECTION -->
+      <section class="section" id="countdownSection">
+        <div class="container countdown reveal">
+          <p class="eyebrow">Countdown</p>
+          <h2 class="title">Until We Say “I Do”</h2>
+          <div class="count-grid">
+            <article class="count-box">
+              <p class="count-num" id="days">00</p>
+              <p class="count-text">Days</p>
+            </article>
+            <article class="count-box">
+              <p class="count-num" id="hours">00</p>
+              <p class="count-text">Hours</p>
+            </article>
+            <article class="count-box">
+              <p class="count-num" id="minutes">00</p>
+              <p class="count-text">Minutes</p>
+            </article>
+            <article class="count-box">
+              <p class="count-num" id="seconds">00</p>
+              <p class="count-text">Seconds</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6) GALLERY – HIGH FASHION GRID -->
+      <section class="section" id="gallery">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Gallery</p>
+            <h2 class="title">Frames Of Us</h2>
+          </div>
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+      </section>
+
+      <!-- 7) RSVP – MINIMAL FORM -->
+      <section class="section" id="rsvp">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">RSVP</p>
+            <h2 class="title">Be Our Guest</h2>
+            <p class="subtitle">
+              Please confirm your attendance at your earliest convenience.
+            </p>
+          </div>
+
+          <form class="rsvp-form reveal" id="rsvpForm" novalidate>
+            <div class="field-grid">
+              <div class="field">
+                <input id="name" name="name" type="text" placeholder=" " />
+                <label for="name">Full Name</label>
+                <p class="error" id="nameError"></p>
+              </div>
+
+              <div class="field">
+                <input id="phone" name="phone" type="tel" placeholder=" " />
+                <label for="phone">Phone Number</label>
+                <p class="error" id="phoneError"></p>
+              </div>
+
+              <div class="field full">
+                <select id="attendance" name="attendance">
+                  <option value="" selected disabled hidden></option>
+                  <option value="Yes">Yes, I will attend</option>
+                  <option value="No">No, I cannot attend</option>
+                </select>
+                <label for="attendance">Attendance Confirmation</label>
+                <p class="error" id="attendanceError"></p>
+              </div>
+            </div>
+            <button class="submit-btn" type="submit">Send RSVP</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- 8) 🎁 WEDDING GIFT – QR TRANSFER SECTION -->
+      <section class="section" id="gift">
+        <div class="container">
+          <div class="gift-wrap reveal">
+            <div class="section-head">
+              <p class="eyebrow">Wedding Gift</p>
+              <h2 class="title">Wedding Gift</h2>
+              <p class="gift-copy">
+                If you wish to send your blessings digitally
+              </p>
+            </div>
+
+            <div class="gift-grid">
+              <div class="gift-info">
+                <div class="gift-row">
+                  <p class="gift-label">Bank Name</p>
+                  <p class="gift-value" id="giftBank"></p>
+                </div>
+                <div class="gift-row">
+                  <p class="gift-label">Account Holder</p>
+                  <p class="gift-value" id="giftName"></p>
+                </div>
+                <div class="gift-row">
+                  <p class="gift-label">Account Number</p>
+                  <p class="gift-value" id="giftAccount"></p>
+                </div>
+                <button type="button" class="copy-btn" id="copyAccountBtn">
+                  Copy Account Number
+                </button>
+              </div>
+
+              <figure class="gift-qr">
+                <img id="giftQr" alt="Wedding gift QR code" loading="lazy" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 10) FOOTER -->
+    <footer>
+      <p class="quote">“Two souls, one heart.”</p>
+      <p class="signature">Tran Khai Hoang & Khuu Yen Ngoc</p>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div class="modal" id="galleryModal" aria-hidden="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <img id="modalImage" alt="Gallery full view" />
+    </div>
+
+    <script>
+      // Render dynamic content
+      const storyGrid = document.getElementById("storyGrid");
+      const galleryGrid = document.getElementById("galleryGrid");
+      const giftBank = document.getElementById("giftBank");
+      const giftName = document.getElementById("giftName");
+      const giftAccount = document.getElementById("giftAccount");
+      const giftQr = document.getElementById("giftQr");
+      const copyAccountBtn = document.getElementById("copyAccountBtn");
+
+      CONTENT.story.forEach((item, index) => {
+        const article = document.createElement("article");
+        article.className = `story-item ${index % 2 === 1 ? "reverse" : ""}`;
+        article.innerHTML = `
+          <figure class="story-image reveal ${index % 2 === 1 ? "right" : "left"}">
+            <img src="${item.image}" alt="${item.title}" loading="lazy" />
+          </figure>
+          <div class="story-copy reveal ${index % 2 === 1 ? "left" : "right"}">
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+          </div>
+        `;
+        storyGrid.appendChild(article);
+      });
+
+      CONTENT.gallery.forEach((src, index) => {
+        const cell = document.createElement("figure");
+        cell.className = "gallery-item reveal";
+        cell.innerHTML = `<img src="${src}" alt="Wedding gallery ${index + 1}" loading="lazy" />`;
+        galleryGrid.appendChild(cell);
+      });
+
+      giftBank.textContent = CONTENT.gift.bankName;
+      giftName.textContent = CONTENT.gift.accountName;
+      giftAccount.textContent = CONTENT.gift.accountNumber;
+      giftQr.src = CONTENT.gift.qrImage;
+
+      // Intro transition
+      const intro = document.getElementById("intro");
+      globalThis.addEventListener("load", () => {
+        setTimeout(() => intro.classList.add("hide"), 2100);
+      });
+
+      // Parallax hero
+      const hero = document.getElementById("hero");
+      globalThis.addEventListener("scroll", () => {
+        const offset = globalThis.scrollY * 0.15;
+        hero.style.setProperty("--hero-parallax", `${offset}px`);
+      });
+
+      // Reveal on scroll
+      const revealEls = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16 },
+      );
+      revealEls.forEach((el) => observer.observe(el));
+
+      // Countdown with subtle number animation
+      const target = new Date(CONTENT.isoDate).getTime();
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      const twoDigits = (num) => String(num).padStart(2, "0");
+
+      function setValue(el, value) {
+        if (el.textContent !== value) {
+          el.textContent = value;
+          el.classList.add("bump");
+          setTimeout(() => el.classList.remove("bump"), 180);
+        }
+      }
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = target - now;
+
+        if (diff <= 0 || Number.isNaN(target)) {
+          setValue(daysEl, "00");
+          setValue(hoursEl, "00");
+          setValue(minutesEl, "00");
+          setValue(secondsEl, "00");
+          return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / (1000 * 60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        setValue(daysEl, twoDigits(d));
+        setValue(hoursEl, twoDigits(h));
+        setValue(minutesEl, twoDigits(m));
+        setValue(secondsEl, twoDigits(s));
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Gallery modal
+      const modal = document.getElementById("galleryModal");
+      const modalImg = document.getElementById("modalImage");
+      const modalClose = document.getElementById("modalClose");
+
+      galleryGrid.addEventListener("click", (event) => {
+        const image = event.target.closest("img");
+        if (!image) return;
+        modalImg.src = image.src;
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      });
+
+      function closeModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      modalClose.addEventListener("click", closeModal);
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal();
+      });
+      globalThis.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeModal();
+      });
+
+      // RSVP validation
+      const rsvpForm = document.getElementById("rsvpForm");
+      const nameInput = document.getElementById("name");
+      const phoneInput = document.getElementById("phone");
+      const attendanceInput = document.getElementById("attendance");
+      const nameError = document.getElementById("nameError");
+      const phoneError = document.getElementById("phoneError");
+      const attendanceError = document.getElementById("attendanceError");
+
+      function clearErrors() {
+        nameError.textContent = "";
+        phoneError.textContent = "";
+        attendanceError.textContent = "";
+      }
+
+      attendanceInput.addEventListener("change", () => {
+        if (attendanceInput.value) attendanceInput.classList.add("filled");
+      });
+
+      rsvpForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        clearErrors();
+
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const attendance = attendanceInput.value;
+
+        let valid = true;
+
+        if (name.length < 2) {
+          nameError.textContent = "Please enter a valid name.";
+          valid = false;
+        }
+
+        if (!/^[0-9+\s-]{8,16}$/.test(phone)) {
+          phoneError.textContent = "Please enter a valid phone number.";
+          valid = false;
+        }
+
+        if (!attendance) {
+          attendanceError.textContent = "Please select your attendance.";
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        const payload = { name, phone, attendance };
+        console.log("RSVP:", payload);
+        alert("Thank you. Your RSVP has been received.");
+        rsvpForm.reset();
+        attendanceInput.classList.remove("filled");
+      });
+
+      // Music control with fade volume
+      const audio = document.getElementById("bgMusic");
+      const musicBtn = document.getElementById("musicBtn");
+      const musicIcon = document.getElementById("musicIcon");
+      let isMusicOn = false;
+      let fadeTimer;
+
+      function fadeVolume(from, to, duration, callback) {
+        clearInterval(fadeTimer);
+        const steps = 20;
+        const stepTime = duration / steps;
+        const delta = (to - from) / steps;
+        let current = 0;
+        audio.volume = Math.max(0, Math.min(1, from));
+
+        fadeTimer = setInterval(() => {
+          current += 1;
+          audio.volume = Math.max(0, Math.min(1, audio.volume + delta));
+          if (current >= steps) {
+            clearInterval(fadeTimer);
+            audio.volume = Math.max(0, Math.min(1, to));
+            if (callback) callback();
+          }
+        }, stepTime);
+      }
+
+      function setPlayIcon() {
+        musicIcon.innerHTML =
+          '<path d="M8 5v14l11 2V3L8 5Zm-3 5v4h2v-4H5Z"></path>';
+      }
+
+      function setPauseIcon() {
+        musicIcon.innerHTML = '<path d="M7 5h4v14H7V5Zm6 0h4v14h-4V5Z"></path>';
+      }
+
+      async function toggleMusic() {
+        if (isMusicOn) {
+          fadeVolume(audio.volume, 0, 300, () => audio.pause());
+          isMusicOn = false;
+          setPlayIcon();
+          return;
+        }
+
+        try {
+          await audio.play();
+          fadeVolume(0, 0.45, 420);
+          isMusicOn = true;
+          setPauseIcon();
+        } catch (error) {
+          console.warn("Audio playback requires user interaction.", error);
+        }
+      }
+
+      musicBtn.addEventListener("click", toggleMusic);
+
+      // Wedding gift copy account number
+      copyAccountBtn.addEventListener("click", async () => {
+        const accountNumber = CONTENT.gift.accountNumber;
+
+        try {
+          await navigator.clipboard.writeText(accountNumber);
+        } catch (error) {
+          console.warn(
+            "Clipboard API unavailable, using fallback copy.",
+            error,
+          );
+          const tempInput = document.createElement("input");
+          tempInput.value = accountNumber;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand("copy");
+          tempInput.remove();
+        }
+
+        const originalText = copyAccountBtn.textContent;
+        copyAccountBtn.textContent = "Copied";
+        copyAccountBtn.classList.add("copied");
+        setTimeout(() => {
+          copyAccountBtn.textContent = originalText;
+          copyAccountBtn.classList.remove("copied");
+        }, 1400);
+      });
+    </script>
+  </body>
+</html>
