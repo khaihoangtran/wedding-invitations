@@ -855,7 +855,7 @@
   </div>
 
   <!-- 8) MUSIC CONTROL -->
-  <audio id="bgMusic" preload="none" loop src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3"></audio>
+  <audio id="bgMusic" preload="none" loop src="./public/music/music.mp3"></audio>
   <button class="music-btn" id="musicBtn" aria-label="Toggle music" title="Music">
     <svg id="musicIcon" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M8 5v14l11 2V3L8 5Zm-3 5v4h2v-4H5Z"></path>
@@ -1284,6 +1284,40 @@
     }
 
     musicBtn.addEventListener("click", toggleMusic);
+
+    // Try to autoplay music on load or first interaction
+    let autoPlayAttempted = false;
+    const startMusic = async () => {
+      // Prevent multiple attempts to handle interaction if already playing
+      if (isMusicOn) {
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("scroll", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+        return;
+      }
+      try {
+        await audio.play();
+        fadeVolume(0, 0.45, 420);
+        isMusicOn = true;
+        setPauseIcon();
+        // Remove interaction listeners once music starts
+        document.removeEventListener("click", startMusic);
+        document.removeEventListener("scroll", startMusic);
+        document.removeEventListener("touchstart", startMusic);
+      } catch (error) {
+        if (!autoPlayAttempted) {
+          console.warn("Autoplay blocked. Waiting for user interaction to play music.");
+          autoPlayAttempted = true;
+        }
+      }
+    };
+
+    // Attempt autoplay immediately
+    globalThis.addEventListener("load", startMusic);
+    // Add interaction fallbacks
+    document.addEventListener("click", startMusic, { once: true });
+    document.addEventListener("scroll", startMusic, { once: true });
+    document.addEventListener("touchstart", startMusic, { once: true });
 
     // Wedding gift copy account number
     copyAccountBtn.addEventListener("click", async () => {
