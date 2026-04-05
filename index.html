@@ -846,7 +846,38 @@
          CONTENT BLOCK (EDIT HERE)
          ========================= -->
     <script>
-      function resolveInviteDateTimeFromQuery() {
+      // ─── PER-SIDE VARIANTS ───────────────────────────────────────────────────
+      // Use ?side=groom (default) or ?side=bride in the URL to switch versions.
+      // Each variant overrides: date, time, location, map, gift.
+      const VARIANTS = {
+        groom: {
+          date: "04/05/2026",
+          time: "10:00",
+          location: "Hoa Tay A, Phu Hoa, An Giang",
+          map: "https://maps.app.goo.gl/CHcfQ8Ey4TdMKuoF7?g_st=ic",
+          gift: {
+            bankName: "Vietcombank",
+            accountName: "Tran Khai Hoang",
+            accountNumber: "1045530289",
+            qrImage: "./public/images/groom-qr-code.png",
+          },
+        },
+        bride: {
+          date: "03/05/2026",
+          time: "10:00",
+          location: "My Thoi, Dinh My, An Giang",
+          map: "https://maps.app.goo.gl/ezMv84oBmDoEeVsD8?g_st=ic",
+          gift: {
+            bankName: "ACB",
+            accountName: "Khuu Yen Ngoc",
+            accountNumber: "LOCPHAT000035220",
+            qrImage: "./public/images/bride-qr-code.png",
+          },
+        },
+      };
+
+      // ─── DATE / TIME HELPERS ─────────────────────────────────────────────────
+      function resolveDateTime(rawDate, rawTime) {
         const twoDigits = (num) => String(num).padStart(2, "0");
         const toDisplayTime = (hour24, minute) => {
           const period = hour24 >= 12 ? "PM" : "AM";
@@ -854,20 +885,8 @@
           return `${hour12}:${twoDigits(minute)} ${period}`;
         };
 
-        const fallback = {
-          displayDate: "04/05/2026",
-          displayTime: "10:00 AM",
-          isoDate: "2026-05-04T10:00:00",
-        };
-
-        const query = new URLSearchParams(globalThis.location.search);
-        const rawDate = query.get("date");
-        const rawTime = query.get("time");
-
-        if (!rawDate) return fallback;
-
         const match = rawDate.trim().match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-        if (!match) return fallback;
+        if (!match) return null;
 
         const [, dd, mm, yyyy] = match;
         const day = Number(dd);
@@ -880,28 +899,21 @@
           check.getMonth() === month - 1 &&
           check.getDate() === day;
 
-        if (!isValidDate) return fallback;
+        if (!isValidDate) return null;
 
-        let hour = 10;
-        let minute = 0;
+        const timeMatch = rawTime.trim().match(/^(\d{1,2}):(\d{2})$/);
+        if (!timeMatch) return null;
 
-        if (rawTime) {
-          const timeMatch = rawTime.trim().match(/^(\d{1,2}):(\d{2})$/);
-          if (!timeMatch) return fallback;
+        const hour = Number(timeMatch[1]);
+        const minute = Number(timeMatch[2]);
 
-          hour = Number(timeMatch[1]);
-          minute = Number(timeMatch[2]);
+        const isValidTime =
+          Number.isInteger(hour) &&
+          Number.isInteger(minute) &&
+          hour >= 0 && hour <= 23 &&
+          minute >= 0 && minute <= 59;
 
-          const isValidTime =
-            Number.isInteger(hour) &&
-            Number.isInteger(minute) &&
-            hour >= 0 &&
-            hour <= 23 &&
-            minute >= 0 &&
-            minute <= 59;
-
-          if (!isValidTime) return fallback;
-        }
+        if (!isValidTime) return null;
 
         return {
           displayDate: `${dd}/${mm}/${yyyy}`,
@@ -910,28 +922,32 @@
         };
       }
 
-      const inviteDateTime = resolveInviteDateTimeFromQuery();
+      // ─── RESOLVE ACTIVE SIDE ─────────────────────────────────────────────────
+      const query = new URLSearchParams(globalThis.location.search);
+      const side = query.get("side") === "bride" ? "bride" : "groom";
+      const variant = VARIANTS[side];
 
+      // URL params ?date= and ?time= still override the variant defaults
+      const urlDate = query.get("date") || variant.date;
+      const urlTime = query.get("time") || variant.time;
+      const resolved = resolveDateTime(urlDate, urlTime) || resolveDateTime(variant.date, variant.time);
+
+      // ─── FINAL CONTENT OBJECT ────────────────────────────────────────────────
       const CONTENT = {
-        bride: "Tran Khai Hoang",
-        groom: "Khuu Yen Ngoc",
-        date: inviteDateTime.displayDate,
-        time: inviteDateTime.displayTime,
-        isoDate: inviteDateTime.isoDate,
-        location: "White Palace Saigon",
-        map: "https://maps.app.goo.gl/CHcfQ8Ey4TdMKuoF7?g_st=ic",
+        groomName: "Tran Khai Hoang",
+        brideName: "Khuu Yen Ngoc",
+        date: resolved.displayDate,
+        time: resolved.displayTime,
+        isoDate: resolved.isoDate,
+        location: variant.location,
+        map: variant.map,
         dressCode: "Formal in black, white, burgundy tones",
         tagline: "A Love Written In Red",
-        gift: {
-          bankName: "Vietcombank",
-          accountName: "Tran Khai Hoang",
-          accountNumber: "1045530289",
-          qrImage: "./public/images/qr-code.png",
-        },
+        gift: variant.gift,
         story: [
           {
             title: "First Met",
-            text: "A chance encounter in Saigon became the start of a story neither of us could forget. Quiet conversations turned into long evenings, and long evenings turned into home.",
+            text: "A chance encounter in our hometown became the start of a story neither of us could forget. Quiet conversations turned into long evenings, and long evenings turned into home.",
             image: "./public/images/first-meet.JPG",
           },
           {
@@ -1019,7 +1035,7 @@
             </div>
             <div class="event-row">
               <p class="event-label">Location</p>
-              <p class="event-value">Hoa Tay A, Phu Hoa, An Giang</p>
+              <p class="event-value" id="eventLocation"></p>
             </div>
             <div class="event-row">
               <p class="event-label">Dress Code</p>
@@ -1027,7 +1043,8 @@
             </div>
             <a
               class="map-btn"
-              href="https://maps.app.goo.gl/CHcfQ8Ey4TdMKuoF7?g_st=ic"
+              id="eventMapBtn"
+              href="#"
               target="_blank"
               rel="noopener"
               >View Map</a
@@ -1179,6 +1196,10 @@
 
       heroDate.textContent = `${CONTENT.date} · ${CONTENT.time}`;
       eventDateTime.textContent = `${CONTENT.date} · ${CONTENT.time}`;
+
+      document.getElementById("eventLocation").textContent = CONTENT.location;
+      const mapBtn = document.getElementById("eventMapBtn");
+      mapBtn.href = CONTENT.map;
 
       CONTENT.story.forEach((item, index) => {
         const article = document.createElement("article");
